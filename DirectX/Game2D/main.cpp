@@ -1,0 +1,28 @@
+#include <CEngine.h>
+
+#include "../Engine/resource.h"
+
+#ifdef _DEBUG
+// 라이브러리 링크를 자동으로 처리해주는 지시문
+#pragma comment(lib, "Engine_Debug.lib")
+
+#else
+#pragma comment(lib, "Engine.lib")
+
+#endif
+
+
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPWSTR    lpCmdLine,
+	_In_ int       nCmdShow)
+{
+	if (!CEngine::GetInst()->Init(hInstance, TEXT("GameClient"),
+		IDI_ICON1, IDI_ICON1,
+		1280, 720, true))
+	{
+		CEngine::DestroyInst();
+	}
+
+	return 0;
+}
